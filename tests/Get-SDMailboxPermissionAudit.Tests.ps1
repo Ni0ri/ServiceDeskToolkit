@@ -111,7 +111,7 @@ Describe 'Get-SDMailboxPermissionAudit' {
         $csv.Count | Should -Be 1
         $data = @(Import-Csv -LiteralPath $csv.FullName -Delimiter ';')
         $data.Count | Should -Be 5
-        ($data | Where-Object Orphaned -EQ 'True').Count | Should -Be 1
+        @($data | Where-Object Orphaned -EQ 'True').Count | Should -Be 1
 
         $html = Get-Content -LiteralPath (Get-ChildItem -Path $outDir -Filter 'MailboxPermissionAudit_*.html').FullName -Raw
         $html | Should -Match '<dt>Mailboxes</dt><dd>2</dd>'

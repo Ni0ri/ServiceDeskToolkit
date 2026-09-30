@@ -25,7 +25,6 @@
     PrivateData          = @{
         PSData = @{
             Tags                       = @('M365', 'Microsoft365', 'EntraID', 'AzureAD', 'Intune', 'ExchangeOnline', 'Offboarding', 'MicrosoftGraph', 'ServiceDesk', 'Report', 'PSEdition_Desktop', 'PSEdition_Core')
-            # Set both once the repository is public:
             LicenseUri = 'https://github.com/Ni0ri/ServiceDeskToolkit/blob/main/LICENSE'
             ProjectUri = 'https://github.com/Ni0ri/ServiceDeskToolkit'
             ExternalModuleDependencies = @(
