@@ -19,7 +19,10 @@ function Get-SDPropertyValue {
     if ($null -eq $InputObject) { return $null }
 
     if ($InputObject -is [System.Collections.IDictionary]) {
-        if ($InputObject.Contains($Name)) { return $InputObject[$Name] }
+        # Works for Hashtable and Dictionary[string,object] (Graph AdditionalProperties), case-insensitive.
+        foreach ($key in $InputObject.Keys) {
+            if ([string]$key -eq $Name) { return $InputObject[$key] }
+        }
         return $null
     }
 

@@ -235,7 +235,7 @@ function Invoke-SDOffboarding {
                     UserId            = [string]$user.Id
                     DisplayName       = [string]$user.DisplayName
                     AccountEnabled    = [bool]$user.AccountEnabled
-                    Groups            = @($groups)
+                    Groups            = $groups.ToArray()
                     DirectLicenses    = @($licenses.Direct | ForEach-Object { [pscustomobject]@{ SkuId = $_; SkuPartNumber = (& $skuLabel $_) } })
                     GroupLicenses     = @($licenses.Inherited | ForEach-Object { [pscustomobject]@{ SkuId = $_; SkuPartNumber = (& $skuLabel $_) } })
                     Mailbox           = $null
@@ -376,7 +376,7 @@ function Invoke-SDOffboarding {
                         elseif ($PSCmdlet.ShouldProcess($target, "Remove from group $groupLabel [$($plan.Reason)]")) {
                             if ($plan.Method -eq 'Graph') {
                                 $steps.Add((Invoke-SDStep -StepName 'RemoveGroup' -StepTarget $groupLabel -Action {
-                                            Remove-MgGroupMemberByRef -GroupId $group.Id -DirectoryObjectId $user.Id
+                                            Remove-MgGroupMemberDirectoryObjectByRef -GroupId $group.Id -DirectoryObjectId $user.Id
                                             "Removed $target ($($plan.Reason))"
                                         }))
                             }

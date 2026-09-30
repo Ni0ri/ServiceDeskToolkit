@@ -132,7 +132,7 @@ function Get-SDMailboxPermissionAudit {
                         Write-SDLog -Level ERROR -Message ("Mailbox '{0}' not found: {1}" -f $id, $_.Exception.Message)
                     }
                 }
-                $mailboxes = @($mailboxes)
+                $mailboxes = $mailboxes.ToArray()
             }
             else {
                 $mailboxes = @(Get-EXOMailbox -ResultSize Unlimited -RecipientTypeDetails $RecipientTypeDetails -Properties $mailboxProperties)

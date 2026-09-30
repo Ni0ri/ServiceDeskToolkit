@@ -18,7 +18,7 @@ function Test-SDToolkit {
     .EXAMPLE
         (Test-SDToolkit).Summary
 
-        Prints the result line, for example "12/12 Tests gruen" (with umlaut) when everything passes.
+        Prints the result line, for example "13/13 Tests gruen" (with umlaut) when everything passes.
 
     .EXAMPLE
         Test-SDToolkit -PassThru | Where-Object { -not $_.Passed }
@@ -75,6 +75,12 @@ function Test-SDToolkit {
             }
         }
         @{ Name = 'File names are sanitized'; Test = { (ConvertTo-SDSafeFileName -Name 'a/b:c*d') -eq 'a_b_c_d' } }
+        @{ Name = 'Graph AdditionalProperties dictionary is readable'; Test = {
+                $dictionary = New-Object -TypeName 'System.Collections.Generic.Dictionary[string,object]'
+                $dictionary['displayName'] = 'SG-Test'
+                ((Get-SDPropertyValue -InputObject $dictionary -Name 'displayName') -eq 'SG-Test') -and ($null -eq (Get-SDPropertyValue -InputObject $dictionary -Name 'mail'))
+            }
+        }
     )
 
     $results = foreach ($case in $cases) {
