@@ -1,0 +1,16 @@
+# Test and analyzer output
+TestResults/
+testResults.xml
+coverage.xml
+out/
+
+# Logs, reports and offboarding backups created while trying the module
+Logs/
+*.log
+*.csv
+*.html
+Offboarding_*.json
+
+# Editor
+.vscode/
+*.swp
