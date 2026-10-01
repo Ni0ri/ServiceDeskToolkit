@@ -112,6 +112,10 @@ Scheitert Schritt 2 oder 3, bricht die Funktion ab. Fehler in späteren Schritte
 - Besitzerrechte an Gruppen, Teams, SharePoint und OneDrive werden nicht übertragen.
 - Geräte des Benutzers werden nicht gesperrt oder gelöscht (Intune-Wipe bleibt bewusst manuell).
 
+### Mehr Vorlagen
+
+Antwortbausteine für Tickets, KB-Vorlagen und On-/Offboarding-Checklisten (Deutsch und Englisch, Word/PDF/CSV) gibt es als kostenpflichtiges Paket: [Service Desk Template Kit](https://warkentinartur.gumroad.com/l/bhulyv). Das Modul hier bleibt kostenlos und MIT-lizenziert.
+
 ### Lizenz
 
 MIT, siehe [LICENSE](LICENSE). Autor: Artur Warkentin.
@@ -217,6 +221,10 @@ If step 2 or 3 fails, the function stops. Later failures are logged and marked `
 - Exchange remote cmdlets (`Set-Mailbox`, `Add-MailboxPermission`, `Set-MailboxAutoReplyConfiguration`, `Remove-DistributionGroupMember`) only exist after `Connect-ExchangeOnline`, so offline they are covered by mocks only.
 - Ownership of groups, Teams, SharePoint and OneDrive is not transferred.
 - Devices of the user are not locked or wiped (Intune wipe is left as a deliberate manual step).
+
+### More templates
+
+Ticket response templates, KB article templates and on/offboarding checklists (English and German, Word/PDF/CSV) are available as a paid kit: [Service Desk Template Kit](https://warkentinartur.gumroad.com/l/bhulyv). This module stays free and MIT-licensed.
 
 ### License
 
