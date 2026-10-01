@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/), versioning: [SemVer](https://semver.org/).
 
+## [1.0.0] - 2026-10-01
+
+### Changed
+- Module manifest prepared for the PowerShell Gallery (description, tags, release notes). No functional changes.
+- README: installation from the PowerShell Gallery (`Install-PSResource` / `Install-Module`).
+
 ## [0.1.0] - 2026-09-30
 
 ### Added

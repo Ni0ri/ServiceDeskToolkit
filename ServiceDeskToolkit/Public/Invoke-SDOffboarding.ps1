@@ -106,9 +106,10 @@ function Invoke-SDOffboarding {
 
     .NOTES
         Author:  Artur Warkentin
-        Version: 0.1.0
-        Date:    2026-09-30
+        Version: 1.0.0
+        Date:    2026-10-01
         Changelog:
+          1.0.0 (2026-10-01) First PowerShell Gallery release, no functional changes.
           0.1.0 (2026-09-30) Initial version.
 
     .LINK

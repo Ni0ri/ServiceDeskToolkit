@@ -32,6 +32,19 @@ Describe 'Module manifest' {
         $exported | Should -Be @('Get-SDIntuneNoncompliantReport', 'Get-SDMailboxPermissionAudit', 'Invoke-SDOffboarding', 'Test-SDToolkit')
     }
 
+    It 'has the metadata the PowerShell Gallery needs and no hard Graph/Exchange dependency' {
+        $manifest = Import-PowerShellDataFile -Path $manifestPath
+        [version]$manifest.ModuleVersion | Should -BeGreaterOrEqual ([version]'1.0.0')
+        $manifest.Description.Length | Should -BeGreaterThan 100
+        $manifest.ContainsKey('RequiredModules') | Should -BeFalse -Because 'Graph and Exchange modules are checked at runtime'
+        $psData = $manifest.PrivateData.PSData
+        $psData.ProjectUri | Should -Match '^https://github\.com/Ni0ri/ServiceDeskToolkit$'
+        $psData.LicenseUri | Should -Match '^https://github\.com/Ni0ri/ServiceDeskToolkit/.+/LICENSE$'
+        $psData.ReleaseNotes | Should -Match ([regex]::Escape($manifest.ModuleVersion))
+        $psData.Tags | Should -Not -BeNullOrEmpty
+        $psData.Tags | Where-Object { $_ -match '\s' } | Should -BeNullOrEmpty
+    }
+
     It 'has a public file for every exported function' {
         $publicFiles = Get-ChildItem -Path (Join-Path (Split-Path $manifestPath -Parent) 'Public') -Filter '*.ps1' | ForEach-Object BaseName | Sort-Object
         $manifest = Import-PowerShellDataFile -Path $manifestPath

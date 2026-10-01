@@ -42,10 +42,23 @@ In vielen kleinen und mittleren Unternehmen werden Offboarding und Berechtigungs
 Mit der Minimalvariante erscheint beim Start eine Warnung, dass `User.ReadWrite.All` fehlt. Die Warnung ist dann unkritisch.
 Für unbeaufsichtigte Läufe (App-only) werden die gleichen Scopes als Anwendungsberechtigungen vergeben. Für Exchange kommen `Exchange.ManageAsApp` und eine passende Entra-Rolle hinzu, die Anmeldung erfolgt per Zertifikat. Geheimnisse gehören nie ins Skript.
 
-### Installation (lokal)
+### Installation
+
+Aus der PowerShell Gallery (nach Veröffentlichung):
 
 ```powershell
-git clone <repo-url> C:\Tools\ServiceDeskToolkit
+Install-PSResource ServiceDeskToolkit                    # PowerShell 7.4+ (PSResourceGet)
+Install-Module ServiceDeskToolkit -Scope CurrentUser     # Windows PowerShell 5.1 (PowerShellGet)
+Import-Module ServiceDeskToolkit
+Test-SDToolkit
+```
+
+Die Microsoft-Graph- und Exchange-Module werden dabei nicht mitinstalliert (siehe Voraussetzungen).
+
+Lokal aus dem Repository:
+
+```powershell
+git clone https://github.com/Ni0ri/ServiceDeskToolkit.git C:\Tools\ServiceDeskToolkit
 Import-Module C:\Tools\ServiceDeskToolkit\ServiceDeskToolkit\ServiceDeskToolkit.psd1
 Test-SDToolkit            # Summary: 13/13 Tests grün
 Get-Help Invoke-SDOffboarding -Full
@@ -101,7 +114,7 @@ Scheitert Schritt 2 oder 3, bricht die Funktion ab. Fehler in späteren Schritte
 ./scripts/Invoke-QualityGate.ps1 -InstallDependencies
 ```
 
-- Pester 5: 136 Tests. Alle Graph- und Exchange-Cmdlets sind gemockt, es wird weder ein Tenant noch eine Anmeldung gebraucht.
+- Pester 5: 137 Tests. Alle Graph- und Exchange-Cmdlets sind gemockt, es wird weder ein Tenant noch eine Anmeldung gebraucht.
 - Die Contract-Tests prüfen die Stubs gegen die echten Module, sofern diese installiert sind (ohne Anmeldung).
 - PSScriptAnalyzer mit `PSScriptAnalyzerSettings.psd1`: Jeder Fund lässt den Lauf scheitern.
 - GitHub Actions (`.github/workflows/ci.yml`) testet mit PowerShell 7 unter Ubuntu und Windows sowie mit Windows PowerShell 5.1.
@@ -156,10 +169,23 @@ Offboarding and permission reviews are still done by hand in many small and mid-
 With the least-privilege set a start-up warning about the missing `User.ReadWrite.All` scope appears; it can be ignored.
 For unattended (app-only) runs, grant the same scopes as application permissions. Exchange also needs `Exchange.ManageAsApp` plus a matching Entra role, with certificate-based sign-in. Never put secrets into scripts.
 
-### Installation (local)
+### Installation
+
+From the PowerShell Gallery (once published):
 
 ```powershell
-git clone <repo-url> C:\Tools\ServiceDeskToolkit
+Install-PSResource ServiceDeskToolkit                    # PowerShell 7.4+ (PSResourceGet)
+Install-Module ServiceDeskToolkit -Scope CurrentUser     # Windows PowerShell 5.1 (PowerShellGet)
+Import-Module ServiceDeskToolkit
+Test-SDToolkit
+```
+
+The Microsoft Graph and Exchange modules are not installed with it (see Requirements).
+
+Local copy from the repository:
+
+```powershell
+git clone https://github.com/Ni0ri/ServiceDeskToolkit.git C:\Tools\ServiceDeskToolkit
 Import-Module C:\Tools\ServiceDeskToolkit\ServiceDeskToolkit\ServiceDeskToolkit.psd1
 Test-SDToolkit
 Get-Help Invoke-SDOffboarding -Full
@@ -211,7 +237,7 @@ If step 2 or 3 fails, the function stops. Later failures are logged and marked `
 ./scripts/Invoke-QualityGate.ps1 -InstallDependencies
 ```
 
-- Pester 5: 136 tests. All Graph and Exchange cmdlets are mocked, so no tenant or sign-in is needed.
+- Pester 5: 137 tests. All Graph and Exchange cmdlets are mocked, so no tenant or sign-in is needed.
 - Contract tests compare the stubs with the real modules when they are installed (no sign-in).
 - PSScriptAnalyzer with `PSScriptAnalyzerSettings.psd1`: any finding fails the run.
 - GitHub Actions (`.github/workflows/ci.yml`): PowerShell 7 on Ubuntu and Windows, Windows PowerShell 5.1.
