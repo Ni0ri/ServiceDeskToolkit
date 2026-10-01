@@ -4,6 +4,8 @@ PowerShell-Modul für wiederkehrende Microsoft-365-Aufgaben im IT-Service-Desk: 
 
 PowerShell module for recurring Microsoft 365 service desk tasks: Entra ID / Exchange Online offboarding, Intune compliance report and mailbox permission audit.
 
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/v/ServiceDeskToolkit?label=PowerShell%20Gallery)](https://www.powershellgallery.com/packages/ServiceDeskToolkit)
+
 **[Deutsch](#deutsch) · [English](#english)**
 
 ---
@@ -44,7 +46,7 @@ Für unbeaufsichtigte Läufe (App-only) werden die gleichen Scopes als Anwendung
 
 ### Installation
 
-Aus der PowerShell Gallery (nach Veröffentlichung):
+Aus der [PowerShell Gallery](https://www.powershellgallery.com/packages/ServiceDeskToolkit):
 
 ```powershell
 Install-PSResource ServiceDeskToolkit                    # PowerShell 7.4+ (PSResourceGet)
@@ -171,7 +173,7 @@ For unattended (app-only) runs, grant the same scopes as application permissions
 
 ### Installation
 
-From the PowerShell Gallery (once published):
+From the [PowerShell Gallery](https://www.powershellgallery.com/packages/ServiceDeskToolkit):
 
 ```powershell
 Install-PSResource ServiceDeskToolkit                    # PowerShell 7.4+ (PSResourceGet)
